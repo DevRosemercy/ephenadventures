@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ephen Adventures & Social Club | Premium Safari & Events</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',
+                            amber: '#F59E0B',
+                            dark: '#0F172A',
+                            accent: '#10B981'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-nav { backdrop-filter: blur(12px); background: rgba(15, 23, 42, 0.85); }
+        .glass-card { backdrop-filter: blur(8px); background: rgba(30, 41, 59, 0.7); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo (Exact SVG Reproduction) -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500 via-amber-600 to-yellow-600 p-0.5 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform duration-300">
+                        <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center overflow-hidden relative">
+                            <!-- SVG Compass & Mountain Logo -->
+                            <svg class="w-7 h-7 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                                <circle cx="12" cy="12" r="3" fill="#F59E0B" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-amber-400 via-amber-200 to-yellow-500 bg-clip-text text-transparent">EPHEN ADVENTURES</span>
+                        <span class="block text-[10px] font-bold text-amber-500/80 tracking-widest uppercase">& Social Club</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#hero" class="text-sm font-medium text-slate-300 hover:text-amber-400 transition">Home</a>
+                    <a href="#upcoming" class="text-sm font-medium text-amber-400 hover:text-amber-300 transition flex items-center gap-1.5">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                        </span>
+                        Events & Trips
+                    </a>
+                    <a href="#about" class="text-sm font-medium text-slate-300 hover:text-amber-400 transition">About Us</a>
+                    <a href="#ai-assistant" class="text-sm font-medium text-slate-300 hover:text-amber-400 transition flex items-center gap-1">
+                        <i class="fa-solid fa-wand-magic-sparkles text-amber-400 text-xs"></i> AI Assistant
+                    </a>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="hidden md:flex items-center gap-3">
+                    <button onclick="toggleAdminModal()" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 transition flex items-center gap-2">
+                        <i class="fa-solid fa-lock text-amber-400"></i> Admin Portal
+                    </button>
+                    <a href="https://wa.me/254702427704?text=Hello%20Ephen%20Adventures%2C%20I%20would%20like%20to%20inquire%20about%20your%20upcoming%20trips." target="_blank" class="px-4 py-2 rounded-lg text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition shadow-lg shadow-amber-500/20 flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Instant Booking
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+                    <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-slate-950/95 px-4 pt-3 pb-6 space-y-3">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-300 hover:text-amber-400">Home</a>
+            <a href="#upcoming" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-amber-400">Upcoming Trips & Events</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-300">About Us</a>
+            <a href="#ai-assistant" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-300">AI Assistant</a>
+            <div class="pt-4 border-t border-slate-800 flex flex-col gap-2">
+                <button onclick="toggleAdminModal(); toggleMobileMenu();" class="w-full py-2.5 rounded-lg text-sm font-semibold text-slate-200 bg-slate-800 border border-slate-700 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-lock text-amber-400"></i> Admin Login
+                </button>
+                <a href="https://wa.me/254702427704" target="_blank" class="w-full py-2.5 rounded-lg text-sm font-bold text-slate-950 bg-amber-500 text-center flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp Us (+254 702 427 704)
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION WITH CAROUSEL -->
+    <section id="hero" class="relative pt-28 pb-20 md:pt-36 md:pb-32 overflow-hidden border-b border-slate-800">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-transparent z-10"></div>
+        
+        <!-- Hero Background Slider -->
+        <div class="absolute inset-0 z-0">
+            <img id="hero-bg" src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1920&q=80" alt="Safari Adventure" class="w-full h-full object-cover transition-all duration-1000 scale-105">
+        </div>
+
+        <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="max-w-3xl">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20 mb-6">
+                    <i class="fa-solid fa-compass animate-spin text-[10px]" style="animation-duration: 10s;"></i> Unforgettable Expeditions & Social Gatherings
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight mb-6">
+                    Explore Kenya's Wild Magic With <span class="bg-gradient-to-r from-amber-400 via-amber-200 to-yellow-500 bg-clip-text text-transparent">Ephen Adventures</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed mb-8">
+                    Join our vibrant social club for weekend getaways, thrill-seeking outdoor adventures, cultural expeditions, and exclusive networking events.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
+                    <a href="#upcoming" class="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 shadow-xl shadow-amber-500/25 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-calendar-check"></i> Explore Upcoming Events
+                    </a>
+                    <a href="#ai-assistant" class="w-full sm:w-auto px-8 py-4 rounded-xl text-sm font-semibold text-slate-200 bg-slate-900/80 hover:bg-slate-800 border border-slate-700 transition flex items-center justify-center gap-2 backdrop-blur-md">
+                        <i class="fa-solid fa-sparkles text-amber-400"></i> Plan With AI Assistant
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPCOMING TRIPS & EVENTS SECTION -->
+    <section id="upcoming" class="py-20 bg-slate-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <div class="flex items-center gap-2 text-amber-500 text-xs font-bold uppercase tracking-widest mb-2">
+                        <i class="fa-solid fa-fire"></i> Live Calendar
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Upcoming Trips & Social Events</h2>
+                    <p class="text-slate-400 text-sm mt-2">Book your spot early for our curated safaris, hikes, and club meetups.</p>
+                </div>
+                <!-- Event Filter Tags -->
+                <div class="flex flex-wrap gap-2" id="filter-buttons">
+                    <button onclick="filterEvents('all')" class="filter-btn active px-4 py-2 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950 transition">All Events</button>
+                    <button onclick="filterEvents('featured')" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Featured Special</button>
+                    <button onclick="filterEvents('safari')" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Safaris & Hikes</button>
+                    <button onclick="filterEvents('social')" class="filter-btn px-4 py-2 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Social Gatherings</button>
+                </div>
+            </div>
+
+            <!-- Events Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="events-grid">
+                
+                <!-- FEATURED EVENT 1: NEW EVENT FLYER -->
+                <div class="event-card group bg-slate-900 rounded-2xl overflow-hidden border border-amber-500/40 shadow-2xl shadow-amber-500/10 flex flex-col transition duration-300 hover:border-amber-400 hover:-translate-y-1" data-category="featured">
+                    <div class="relative overflow-hidden aspect-[4/5] bg-slate-950">
+                        <img src="https://i.ibb.co/qLz854Lz/Whats-App-Image-2026-10-23-at-1-19-13-PM.jpg" alt="Featured Adventure Event" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 left-4 bg-amber-500 text-slate-950 font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                            <i class="fa-solid fa-star mr-1"></i> Featured Experience
+                        </span>
+                        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                            <span class="bg-slate-900/90 backdrop-blur-md border border-slate-700 text-amber-400 font-extrabold text-sm px-3 py-1.5 rounded-lg">
+                                Exclusive Event
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between bg-gradient-to-b from-slate-900 to-slate-950">
+                        <div>
+                            <div class="flex items-center gap-2 text-xs text-amber-400 font-medium mb-2">
+                                <i class="fa-regular fa-clock"></i> Upcoming Special Edition
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition mb-3">
+                                Ephen Adventures Exclusive Social Expedition
+                            </h3>
+                            <p class="text-xs text-slate-400 line-clamp-3 mb-4 leading-relaxed">
+                                Join us for a special adventure packed with outdoor fun, social networking, scenic explorations, and unforgettable experiences organized by Ephen Adventures & Social Club.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800 flex items-center gap-3">
+                            <button onclick="openQuickView('https://i.ibb.co/qLz854Lz/Whats-App-Image-2026-10-23-at-1-19-13-PM.jpg', 'Ephen Adventures Exclusive Expedition', 'Check flyer for date details', 'Full safari itinerary, group transportation, guided activities, refreshers, and evening networking session.', 'WhatsApp Inquiry')" class="flex-1 py-2.5 rounded-lg text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 transition border border-slate-700 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-expand"></i> View Flyer Details
+                            </button>
+                            <a href="https://wa.me/254702427704?text=Hello%20Ephen%20Adventures%2C%20I%20am%20interested%20in%20booking%20the%20Featured%20Social%20Expedition%20event%20(Flyer%20ref%3A%20WhatsApp-2026-10-23)." target="_blank" class="px-4 py-2.5 rounded-lg text-xs font-bold text-slate-950 bg-amber-500 hover:bg-amber-400 transition flex items-center justify-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EVENT 2: MAASAI MARA SAFARI -->
+                <div class="event-card group bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 flex flex-col transition duration-300 hover:border-amber-500/50 hover:-translate-y-1" data-category="safari">
+                    <div class="relative overflow-hidden aspect-[4/3] bg-slate-950">
+                        <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80" alt="Maasai Mara Safari" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-sm text-slate-300 font-semibold text-xs px-3 py-1 rounded-full uppercase tracking-wider border border-slate-700">
+                            3 Days / 2 Nights
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-amber-400 font-medium mb-2">
+                                <span><i class="fa-regular fa-calendar mr-1"></i> Nov 14 - 16, 2026</span>
+                                <span class="text-slate-400">KES 28,500</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition mb-2">
+                                Maasai Mara Great Wildebeest Migration
+                            </h3>
+                            <p class="text-xs text-slate-400 line-clamp-2 mb-4">
+                                Experience game drives in 4x4 Land Cruisers, luxury tented camp stays, and bonfire networking under stars.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800 flex items-center gap-3">
+                            <button onclick="openQuickView('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=800&q=80', 'Maasai Mara Great Wildebeest Migration', 'Nov 14 - 16, 2026', 'Includes 4x4 Cruiser transport, full board meals, park entry fees, and professional guide services.', 'KES 28,500 / person')" class="flex-1 py-2.5 rounded-lg text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 transition border border-slate-700 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-circle-info"></i> Details
+                            </button>
+                            <a href="https://wa.me/254702427704?text=Hi%20Ephen%20Adventures%2C%20I%20want%20to%20reserve%20a%20slot%20for%20the%20Maasai%20Mara%20Safari%20in%20November." target="_blank" class="px-4 py-2.5 rounded-lg text-xs font-bold text-slate-950 bg-amber-500 hover:bg-amber-400 transition flex items-center justify-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EVENT 3: KILIMANJARO HIKE -->
+                <div class="event-card group bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 flex flex-col transition duration-300 hover:border-amber-500/50 hover:-translate-y-1" data-category="safari">
+                    <div class="relative overflow-hidden aspect-[4/3] bg-slate-950">
+                        <img src="https://images.unsplash.com/photo-1589553460732-58ef7a11d986?auto=format&fit=crop&w=800&q=80" alt="Mount Kilimanjaro Hike" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-sm text-slate-300 font-semibold text-xs px-3 py-1 rounded-full uppercase tracking-wider border border-slate-700">
+                            Extreme Trek
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-amber-400 font-medium mb-2">
+                                <span><i class="fa-regular fa-calendar mr-1"></i> Dec 01 - 06, 2026</span>
+                                <span class="text-slate-400">KES 45,000</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition mb-2">
+                                Mt. Kilimanjaro Summit Challenge
+                            </h3>
+                            <p class="text-xs text-slate-400 line-clamp-2 mb-4">
+                                Conquer Africa's highest peak with certified mountain guides, medical support, and full gear assistance.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800 flex items-center gap-3">
+                            <button onclick="openQuickView('https://images.unsplash.com/photo-1589553460732-58ef7a11d986?auto=format&fit=crop&w=800&q=80', 'Mt. Kilimanjaro Summit Challenge', 'Dec 01 - 06, 2026', '6-day Machame Route trekking package including guides, porters, camping gear, and summit certification.', 'KES 45,000 / person')" class="flex-1 py-2.5 rounded-lg text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 transition border border-slate-700 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-circle-info"></i> Details
+                            </button>
+                            <a href="https://wa.me/254702427704?text=Hello%20Ephen%20Adventures%2C%20I%20am%20ready%20for%20the%20Kilimanjaro%20Summit%20Challenge." target="_blank" class="px-4 py-2.5 rounded-lg text-xs font-bold text-slate-950 bg-amber-500 hover:bg-amber-400 transition flex items-center justify-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EVENT 4: ZANZIBAR BEACH RETREAT -->
+                <div class="event-card group bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 flex flex-col transition duration-300 hover:border-amber-500/50 hover:-translate-y-1" data-category="social">
+                    <div class="relative overflow-hidden aspect-[4/3] bg-slate-950">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Zanzibar Island Getaway" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-sm text-slate-300 font-semibold text-xs px-3 py-1 rounded-full uppercase tracking-wider border border-slate-700">
+                            Social Beach Party
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between text-xs text-amber-400 font-medium mb-2">
+                                <span><i class="fa-regular fa-calendar mr-1"></i> Dec 28 - Jan 02</span>
+                                <span class="text-slate-400">KES 32,000</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition mb-2">
+                                Zanzibar New Year Island Getaway
+                            </h3>
+                            <p class="text-xs text-slate-400 line-clamp-2 mb-4">
+                                White sands, Stone Town tours, ocean sunset cruises, and our annual Social Club end-of-year beach fiesta.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-800 flex items-center gap-3">
+                            <button onclick="openQuickView('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80', 'Zanzibar New Year Island Getaway', 'Dec 28, 2026 - Jan 02, 2027', 'Includes return flights, beachfront hotel stays, daily breakfast, spice tour, and VIP beach party access.', 'KES 32,000 / person')" class="flex-1 py-2.5 rounded-lg text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 transition border border-slate-700 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-circle-info"></i> Details
+                            </button>
+                            <a href="https://wa.me/254702427704?text=Hi!%20I%20would%20like%20to%20join%20the%20Zanzibar%20New%20Year%20Island%20Getaway." target="_blank" class="px-4 py-2.5 rounded-lg text-xs font-bold text-slate-950 bg-amber-500 hover:bg-amber-400 transition flex items-center justify-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Book
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- AI SAFARI ASSISTANT INTEGRATION -->
+    <section id="ai-assistant" class="py-20 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-amber-500 text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-1.5 mb-2">
+                    <i class="fa-solid fa-sparkles"></i> AI Powered Planning
+                </span>
+                <h2 class="text-3xl font-extrabold text-white">Ask Ephen's AI Safari Concierge</h2>
+                <p class="text-slate-400 text-sm mt-2">Get personalized itinerary recommendations, packing tips, or budget estimates in seconds.</p>
+            </div>
+
+            <div class="bg-slate-950 rounded-2xl border border-slate-800 shadow-2xl p-6 flex flex-col gap-4">
+                <div id="ai-messages" class="h-64 overflow-y-auto space-y-4 pr-2 text-sm">
+                    <div class="flex gap-3 items-start">
+                        <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center text-slate-950 font-bold shrink-0">
+                            <i class="fa-solid fa-robot text-xs"></i>
+                        </div>
+                        <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 max-w-lg text-slate-300">
+                            Jambo! I am your Ephen Adventures AI Assistant. Ask me anything about Kenya safaris, hiking prep, or custom group bookings!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-2 pt-2 border-t border-slate-800">
+                    <input type="text" id="ai-input" placeholder="e.g. What should I pack for a 3-day Maasai Mara trip?" class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-amber-500">
+                    <button onclick="sendAIMessage()" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition flex items-center gap-2">
+                        <span>Send</span> <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADMIN MODAL DASHBOARD -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+            <div class="flex justify-between items-center mb-6 border-b border-slate-800 pb-4">
+                <h3 class="text-lg font-bold text-amber-500 flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield"></i> Admin Dashboard
+                </h3>
+                <button onclick="toggleAdminModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="admin-login-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Username</label>
+                    <input type="text" id="admin-user" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none" placeholder="stephen Joseph">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 mb-1">Password</label>
+                    <input type="password" id="admin-pass" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:border-amber-500 focus:outline-none" placeholder="@2026">
+                </div>
+                <button onclick="authenticateAdmin()" class="w-full py-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition">
+                    Login to Control Panel
+                </button>
+            </div>
+
+            <!-- Control Panel (Hidden until authenticated) -->
+            <div id="admin-controls" class="hidden space-y-4">
+                <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-emerald-400 text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check"></i> Authenticated as Stephen Joseph
+                </div>
+                <button onclick="enableInlineEditor()" class="w-full py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-500/30 font-semibold text-xs transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-pen-to-square"></i> Enable Live Page Content Editor
+                </button>
+                <button onclick="logoutAdmin()" class="w-full py-2 rounded-lg bg-slate-950 hover:bg-red-950 text-red-400 border border-red-800/40 text-xs font-semibold transition">
+                    Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EVENT QUICK VIEW MODAL -->
+    <div id="quickview-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full p-6 shadow-2xl overflow-y-auto max-h-[90vh]">
+            <div class="flex justify-between items-start mb-4">
+                <h3 id="qv-title" class="text-xl font-bold text-amber-400"></h3>
+                <button onclick="closeQuickView()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="rounded-xl overflow-hidden mb-4 bg-slate-950 flex justify-center">
+                <img id="qv-img" src="" alt="Event Detail" class="max-h-96 object-contain rounded-lg">
+            </div>
+            <div class="space-y-3 text-sm">
+                <div class="flex items-center gap-2 text-xs text-amber-400 font-semibold">
+                    <i class="fa-regular fa-calendar"></i> <span id="qv-date"></span>
+                </div>
+                <p id="qv-desc" class="text-slate-300 text-xs leading-relaxed"></p>
+                <div class="p-3 bg-slate-950 rounded-lg border border-slate-800 flex justify-between items-center">
+                    <span class="text-xs text-slate-400 font-medium">Pricing / Category:</span>
+                    <span id="qv-price" class="text-sm font-bold text-amber-400"></span>
+                </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-800 flex justify-end gap-3">
+                <button onclick="closeQuickView()" class="px-4 py-2 rounded-lg text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 transition">Close</button>
+                <a id="qv-wa-btn" href="#" target="_blank" class="px-5 py-2 rounded-lg text-xs font-bold text-slate-950 bg-amber-500 hover:bg-amber-400 transition flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp"></i> Reserve on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 mt-auto text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center text-slate-950 font-bold">
+                    EA
+                </div>
+                <div>
+                    <p class="font-bold text-slate-200">Ephen Adventures & Social Club</p>
+                    <p class="text-[11px] text-slate-500">© 2026 Ephen Adventures. All rights reserved.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="https://wa.me/254702427704" target="_blank" class="hover:text-amber-400 transition flex items-center gap-1">
+                    <i class="fa-brands fa-whatsapp text-emerald-400"></i> +254 702 427 704
+                </a>
+                <span class="text-slate-700">|</span>
+                <button onclick="toggleAdminModal()" class="hover:text-amber-400 transition">Admin Access</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE LOGIC -->
+    <script>
+        // Mobile Navigation Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Event Category Filtering
+        function filterEvents(category) {
+            const cards = document.querySelectorAll('.event-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-amber-500', 'text-slate-950');
+                btn.classList.add('bg-slate-800', 'text-slate-300');
+            });
+            event.currentTarget.classList.remove('bg-slate-800', 'text-slate-300');
+            event.currentTarget.classList.add('bg-amber-500', 'text-slate-950');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Quick View Modal
+        function openQuickView(imgSrc, title, date, desc, price) {
+            document.getElementById('qv-img').src = imgSrc;
+            document.getElementById('qv-title').innerText = title;
+            document.getElementById('qv-date').innerText = date;
+            document.getElementById('qv-desc').innerText = desc;
+            document.getElementById('qv-price').innerText = price;
+            
+            const waMsg = encodeURIComponent(`Hi Ephen Adventures, I'd like to book/inquire about "${title}".`);
+            document.getElementById('qv-wa-btn').href = `https://wa.me/254702427704?text=${waMsg}`;
+            
+            document.getElementById('quickview-modal').classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quickview-modal').classList.add('hidden');
+        }
+
+        // Admin Auth System
+        function toggleAdminModal() {
+            document.getElementById('admin-modal').classList.toggle('hidden');
+        }
+
+        function authenticateAdmin() {
+            const u = document.getElementById('admin-user').value.trim();
+            const p = document.getElementById('admin-pass').value.trim();
+
+            if (u === "stephen Joseph" && p === "@2026") {
+                localStorage.setItem('ephen_admin_auth', 'true');
+                document.getElementById('admin-login-form').classList.add('hidden');
+                document.getElementById('admin-controls').classList.remove('hidden');
+            } else {
+                alert("Invalid Admin Credentials.");
+            }
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('ephen_admin_auth');
+            document.getElementById('admin-controls').classList.add('hidden');
+            document.getElementById('admin-login-form').classList.remove('hidden');
+        }
+
+        function enableInlineEditor() {
+            document.body.contentEditable = "true";
+            alert("Inline Content Editing Enabled! Click anywhere on text elements to edit.");
+            toggleAdminModal();
+        }
+
+        // Check persistent auth state
+        if (localStorage.getItem('ephen_admin_auth') === 'true') {
+            document.getElementById('admin-login-form').classList.add('hidden');
+            document.getElementById('admin-controls').classList.remove('hidden');
+        }
+
+        // AI Assistant Integration
+        function sendAIMessage() {
+            const input = document.getElementById('ai-input');
+            const msg = input.value.trim();
+            if(!msg) return;
+
+            const container = document.getElementById('ai-messages');
+            
+            // Add User Message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'flex gap-3 items-start justify-end';
+            userDiv.innerHTML = `
+                <div class="bg-amber-500/20 text-amber-200 p-3.5 rounded-xl border border-amber-500/30 max-w-lg">
+                    ${msg}
+                </div>
+            `;
+            container.appendChild(userDiv);
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+
+            // Simulated AI Concierge Response
+            setTimeout(() => {
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'flex gap-3 items-start';
+                aiDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-lg bg-amber-500 flex items-center justify-center text-slate-950 font-bold shrink-0">
+                        <i class="fa-solid fa-robot text-xs"></i>
+                    </div>
+                    <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 max-w-lg text-slate-300">
+                        Thank you for asking! For "${msg}", our Ephen Adventures team recommends checking our featured upcoming expedition or contacting our direct helpline at +254 702 427 704 for custom group itineraries and instant booking!
+                    </div>
+                `;
+                container.appendChild(aiDiv);
+                container.scrollTop = container.scrollHeight;
+            }, 600);
+        }
+    </script>
+</body>
+</html>
